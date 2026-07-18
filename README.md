@@ -14,15 +14,15 @@
 
 | 首页 | 商品详情 |
 |------|----------|
-| ![首页](screenshots/home.png) | ![详情](screenshots/product.png) |
+| ![首页](docs/screenshots/首页界面.png) | ![详情](docs/screenshots/某一商品页面.png) |
 
 | 购物车 | 我的订单 |
 |--------|----------|
-| ![购物车](screenshots/cart.png) | ![订单](screenshots/orders.png) |
+| ![购物车](docs/screenshots/购物车界面.png) | ![订单](docs/screenshots/订单页面.png) |
 
 | 个人中心 | 后台管理 |
 |----------|----------|
-| ![个人中心](screenshots/profile.png) | ![后台](screenshots/admin.png) |
+| ![个人中心](docs/screenshots/个人中心界面.png) | ![后台](docs/screenshots/后台管理.png) |
 
 ---
 
