@@ -1,0 +1,29 @@
+# === 编译产物 ===
+target/
+dist/
+*.class
+*.jar
+*.war
+*.log
+
+# === 依赖 ===
+node_modules/
+
+# === IDE ===
+.idea/
+.vscode/
+*.iml
+
+# === 配置文件（含密码） ===
+application.properties
+# 保留模板（不含真实密码）
+!application.properties.template
+
+# === 上传的图片 ===
+eshop/uploads/
+
+# === 系统文件 ===
+.DS_Store
+Thumbs.db
+desktop.ini
+out/

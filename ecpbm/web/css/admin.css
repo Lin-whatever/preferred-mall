@@ -1,0 +1,33 @@
+/* Admin modern theme */
+*{box-sizing:border-box;}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif !important;margin:0;}
+
+/* Header */
+.layout-panel-north{background:linear-gradient(135deg,#1a1a2e,#16213e) !important;border:none !important;}
+.layout-panel-north .panel-body{background:transparent !important;color:#fff !important;}
+.north-header{font-size:20px;font-weight:600;line-height:60px;color:#fff;letter-spacing:1px;}
+.user-info{position:absolute;right:20px;top:0;line-height:60px;font-size:13px;color:rgba(255,255,255,.85);}
+.user-info font{color:#ffd666 !important;}
+
+/* Sidebar */
+.layout-panel-west{background:#16213e !important;border:none !important;}
+.layout-panel-west .panel-header{background:#1a1a2e !important;border-color:#1a1a2e !important;color:#fff !important;font-weight:500;}
+.layout-panel-west .panel-body{background:#16213e !important;padding:0 !important;}
+.tree-node{font-size:13px;padding:4px 8px !important;margin:2px 6px !important;border-radius:4px !important;color:#c8d6e5 !important;}
+.tree-node:hover{background:rgba(255,255,255,.06) !important;}
+.tree-node-selected{background:rgba(79,70,229,.25) !important;color:#fff !important;}
+.tree-hit,.tree-expanded,.tree-collapsed{display:none;}
+.tree-title{font-size:13px !important;}
+
+/* Tabs */
+.tabs-header{background:#fff !important;border-bottom:1px solid #e8e8e8 !important;}
+.tabs li a.tabs-inner{padding:12px 20px !important;font-size:13px !important;color:#555 !important;border-radius:0 !important;background:#fff !important;border:none !important;}
+.tabs li.tabs-selected a.tabs-inner{color:#4f46e5 !important;font-weight:600 !important;border-bottom:2px solid #4f46e5 !important;}
+.tabs-panels{background:#f0f2f5 !important;}
+
+/* Footer */
+.layout-panel-south{background:#1a1a2e !important;border:none !important;color:rgba(255,255,255,.5) !important;}
+.layout-panel-south .panel-body{background:transparent !important;color:rgba(255,255,255,.5) !important;}
+
+/* Panel borders */
+.layout-split-west{border-color:#16213e !important;}
