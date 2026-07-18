@@ -116,6 +116,3 @@ npm run serve    # 开发模式（端口 8088）
 npm run build    # 生产构建
 ```
 
-## License
-
-仅供学习交流使用。
