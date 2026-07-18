@@ -1,103 +1,146 @@
-# 优选商城 (Preferred Mall)
+# 🛒 优选商城 (Preferred Mall)
 
-Spring Boot + Vue 2 全栈电商平台，从零搭建的完整在线购物系统。
+> Spring Boot + Vue 2 全栈电商平台 | 从零搭建的完整在线购物系统
 
-## 技术栈
+[![Java](https://img.shields.io/badge/Java-17-orange)](https://adoptium.net/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-2.7-brightgreen)](https://spring.io/projects/spring-boot)
+[![Vue](https://img.shields.io/badge/Vue-2.x-4fc08d)](https://vuejs.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+---
+
+## 📸 界面预览
+
+| 首页 | 商品详情 |
+|------|----------|
+| ![首页](screenshots/home.png) | ![详情](screenshots/product.png) |
+
+| 购物车 | 我的订单 |
+|--------|----------|
+| ![购物车](screenshots/cart.png) | ![订单](screenshots/orders.png) |
+
+| 个人中心 | 后台管理 |
+|----------|----------|
+| ![个人中心](screenshots/profile.png) | ![后台](screenshots/admin.png) |
+
+---
+
+## 🧩 功能清单
+
+### 商城前台
+- **商品浏览** — 首页推荐 + 10大分类筛选 + 分页加载 + 模糊搜索
+- **用户系统** — 注册 / 登录 / JWT 鉴权 / 管理员也能登录
+- **购物车** — 未登录存 localStorage / 已登录同步数据库 / 登录自动合并
+- **订单流程** — 确认订单 → 模拟支付 → 确认收货 → 完成（支持取消）
+- **商品评价** — 五星打分 + 文字评论 + 支持匿名
+- **收藏功能** — 一键收藏 / 取消 + 个人中心收藏列表
+- **个人中心** — 收货地址 CRUD + 修改密码 + 我的订单
+
+### 后台管理
+- **商品管理** — 商品列表 / 商品类型 / 图片一键上传
+- **订单管理** — 查询订单 / 创建订单
+- **用户管理** — 用户列表
+- **权限控制** — 菜单树 + 角色权限（普通用户看不到后台入口）
+
+### 安全
+- JWT Token 鉴权（纯 JDK 实现，零依赖）
+- BCrypt 密码加密 + 明文兼容自动升级
+
+---
+
+## 🛠 技术栈
 
 | 层级 | 技术 |
 |------|------|
 | 前端 | Vue 2 + Vuex + Vue Router + Axios |
 | 后端 | Spring Boot 2.7 + MyBatis + Spring MVC |
+| 后台管理 | Spring MVC + JSP + EasyUI |
 | 数据库 | MySQL 8.0 |
-| 安全 | JWT 鉴权 + BCrypt 密码加密 |
+| 安全 | JWT (HMAC-SHA256) + BCrypt |
 | 构建 | Maven + Vue CLI |
 
-## 功能
+---
 
-### 商城前台
-- 商品浏览 —— 首页推荐 + 分类筛选 + 列表分页 + 模糊搜索
-- 用户系统 —— 注册 / 登录 / JWT Token / 管理员登录
-- 购物车 —— 未登录 localStorage / 已登录数据库双写
-- 订单流程 —— 确认订单 → 支付 → 收货 → 完成（支持取消）
-- 商品评价 —— 五星打分 + 文字评论 + 匿名评价
-- 收藏功能 —— 商品收藏 / 取消 + 收藏列表
-- 个人中心 —— 收货地址管理 + 修改密码 + 我的订单
-
-### 后台管理
-- 商品管理 —— 商品列表 + 商品类型 + 图片上传
-- 订单管理 —— 查询订单 + 创建订单
-- 用户管理 —— 用户列表
-- 权限控制 —— 菜单树 + 角色权限
-
-### 管理员工具
-- 图片管理 —— 一键上传 PNG/JPG，自动更新商品图片
-
-## 项目结构
+## 📁 项目结构
 
 ```
 webweb/
-├── eshop/              Spring Boot 商城后端
-│   ├── src/main/java/com/eshop/
-│   │   ├── controller/ 控制器（Product/User/Order/Cart/Favorite/Review）
-│   │   ├── dao/         MyBatis DAO 接口
-│   │   ├── pojo/        实体类
-│   │   ├── service/     业务逻辑
-│   │   ├── util/        JWT / BCrypt 工具
-│   │   └── config/      Spring 配置
-│   └── src/main/resources/
-│       └── application.properties.template  配置模板
-├── shopping/           Vue 2 前端源码
-│   ├── src/views/      页面组件
-│   ├── src/components/ 通用组件
-│   ├── src/router/     路由
-│   └── src/store/       Vuex 状态管理
-├── ecpbm/              后台管理系统（Spring MVC + JSP）
-│   └── web/             JSP 页面
-└── plan.md             开发计划
+├── eshop/                    Spring Boot 商城（内嵌前端）
+│   ├── pom.xml
+│   └── src/main/java/com/eshop/
+│       ├── Application.java          启动类
+│       ├── config/                   配置（CORS/静态资源/拦截器）
+│       ├── controller/               控制器（10个）
+│       │   ├── ProductInfoController 商品
+│       │   ├── UserController        用户
+│       │   ├── OrderInfoController   订单
+│       │   ├── CartController        购物车
+│       │   ├── FavoriteController    收藏
+│       │   ├── ReviewController      评价
+│       │   ├── AddressController     地址
+│       │   ├── AdminController       图片管理
+│       │   └── SpaController         SPA路由
+│       ├── dao/                      MyBatis DAO
+│       ├── pojo/                     实体类
+│       ├── service/                  业务逻辑
+│       └── util/                     JWT / BCrypt
+├── shopping/                 Vue 2 前端源码
+│   ├── src/views/            页面（home/list/product/cart/login...）
+│   ├── src/components/       通用组件
+│   ├── src/router/           路由 + 导航守卫
+│   └── src/store/            Vuex 状态管理
+├── ecpbm/                    后台管理系统
+│   └── web/                  JSP 页面 + EasyUI
+├── plan.md                   开发计划
+└── README.md
 ```
 
-## 快速启动
+---
 
-### 前置要求
-- JDK 17+
-- MySQL 8.0
-- Maven 3.6+
-- Node.js 16+
+## 🚀 快速启动
 
-### 1. 数据库
+### 环境要求
+
+| 工具 | 版本 |
+|------|------|
+| JDK | 17+ |
+| MySQL | 8.0+ |
+| Maven | 3.6+ |
+| Node.js | 16+（仅前端开发需要） |
+
+### 1. 创建数据库
+
+```sql
+CREATE DATABASE IF NOT EXISTS eshop DEFAULT CHARACTER SET utf8mb4;
+```
+
+将数据库表结构导入（导出命令：`mysqldump -uroot -p --no-data eshop > sql/init.sql`）
+
+### 2. 配置文件
 
 ```bash
-# 创建数据库
-mysql -uroot -p -e "CREATE DATABASE IF NOT EXISTS eshop DEFAULT CHARACTER SET utf8mb4"
-
-# 导入表结构和样例数据
-mysql -uroot -p eshop < sql/init.sql
+cp eshop/src/main/resources/application.properties.template    eshop/src/main/resources/application.properties
 ```
 
-### 2. 配置
-
-复制 `eshop/src/main/resources/application.properties.template` 为 `application.properties`，填入你的 MySQL 密码：
+编辑 `application.properties`，填入你的数据库密码：
 
 ```properties
 spring.datasource.password=你的密码
 ```
 
-### 3. 启动
+### 3. 启动服务
 
-**方式一：一键启动（Windows）**
 ```bash
-双击 start.bat
-```
-
-**方式二：手动启动**
-```bash
-# 商城后端（内嵌前端 + 管理工具）
+# 编译
 cd eshop
 mvn clean package -DskipTests
+
+# 启动（内嵌前端 + API + 管理工具）
 java -jar target/eshop-1.0.0.jar
 
-# 后台管理（可选，需要 Tomcat 9 on port 8081）
-D:pache-tomcat-9.0.109in\startup.bat
+# 启动后台管理（可选）
+# 配置 Tomcat 9，端口设为 8081，部署 ecpbm 模块
 ```
 
 ### 4. 访问
@@ -116,12 +159,25 @@ D:pache-tomcat-9.0.109in\startup.bat
 | 普通用户 | john | 123456 |
 | 管理员 | admin | 123456 |
 
-## 前端开发
+---
+
+## 💻 前端开发
 
 ```bash
 cd shopping
 npm install
-npm run serve    # 开发模式（端口 8088）
-npm run build    # 生产构建
+npm run serve      # 开发服务器（端口 8088，API 代理到 8080）
+npm run build      # 生产构建 → eshop/src/main/resources/static/
 ```
 
+---
+
+## 📋 开发计划
+
+详见 [plan.md](plan.md)
+
+---
+
+## 📄 License
+
+MIT — 仅供学习交流使用
