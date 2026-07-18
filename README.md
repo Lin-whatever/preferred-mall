@@ -66,9 +66,12 @@ webweb/
 
 ### 1. 数据库
 
-```sql
-CREATE DATABASE eshop DEFAULT CHARACTER SET utf8mb4;
--- 导入项目中的 SQL 文件（如有）
+```bash
+# 创建数据库
+mysql -uroot -p -e "CREATE DATABASE IF NOT EXISTS eshop DEFAULT CHARACTER SET utf8mb4"
+
+# 导入表结构和样例数据
+mysql -uroot -p eshop < sql/init.sql
 ```
 
 ### 2. 配置
@@ -81,14 +84,20 @@ spring.datasource.password=你的密码
 
 ### 3. 启动
 
+**方式一：一键启动（Windows）**
 ```bash
-# 商城后端（内嵌前端）
+双击 start.bat
+```
+
+**方式二：手动启动**
+```bash
+# 商城后端（内嵌前端 + 管理工具）
 cd eshop
 mvn clean package -DskipTests
 java -jar target/eshop-1.0.0.jar
 
-# 后台管理（可选）
-# 配置 Tomcat 9 部署 ecpbm，端口 8081
+# 后台管理（可选，需要 Tomcat 9 on port 8081）
+D:pache-tomcat-9.0.109in\startup.bat
 ```
 
 ### 4. 访问
